@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+    stages('Clone the code from central Repository'){
+        echo "Downloading code from github"
+        git credentialsId: 'Aparna', url: 'https://github.com/Aparna-G-141/MyNew.git'
+    }
+    stage('clean'){
+        echo "cleaning the target"
+        sh 'mvn clean'
+    }
+    stage('compile'){
+        echo "Compiling"
+        sh 'mvn compile'
+    }
+    stage('package'){
+        echo 'packaging the  code'
+        sh 'mvn package'
+    }
+}
